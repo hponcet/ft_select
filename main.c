@@ -6,56 +6,69 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 15:02:50 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/15 20:58:42 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/18 21:43:10 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
-#include <unistd.h>
-#include <term.h>
-#include <curses.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/ioctl.h>
-#include "libft/includes/libft.h"
+#include "includes/ft_select.h"
 
-static int     voir_touche()
+int              main(void)
 {
-	char     buffer[3];
+	char		*terminfo;
+	t_term		term;
+
+	if ((terminfo = getenv("TERM")) == NULL)
+		return (-1);
+	if (tgetent(NULL, terminfo) == ERR)
+		return (-1);
+	if (tcgetattr(0, &term) == -1)
+		return (-1);
+	ft_shell_mod(term);
+	voir_touche();
+	ft_shell_init();
+	return (0);
+}
+
+int     voir_touche(void)
+{
+	char	buffer[5];
 
 	while (1)
 	{
-		read(0, buffer, 3);
+		read(0, buffer, 5);
 		if (buffer[0] == 27)
-			printf("C'est une fleche !\n");
-		else if (buffer[0] == 4)
-			printf("Ctlr+d, on quitte !\n");
+			ft_printf("C'est une fleche !\n");
+		if (buffer[0] == 4)
+			return (0);
 	}
 	return (0);
 }
 
-int              main(int ac, char **av, char **env)
+int		ft_shell_init(void)
 {
-	char           *name_term;
-	struct termios term;
+	t_term		term;
 
-	ac = 0;
-	av = NULL;
-	name_term = ft_strdup("xterm-256color");
-	if (tgetent(NULL, name_term) == ERR)
-	{
-		printf("51\n");
-		return (-1);
-	}
-	// remplis la structure termios des possibilités du terminal.
 	if (tcgetattr(0, &term) == -1)
-	{
-		printf("55\n");
 		return (-1);
-	}
-	voir_touche();
+	term.c_lflag = (ICANON | ECHO);
+	if (tcsetattr(0, 0, &term) == -1)
+		return (-1);
 	return (0);
 }
 
+int		ft_shell_mod(t_term term)
+{
+	term.c_lflag &= ~(ICANON);
+	term.c_lflag &= ~(ECHO);
+	term.c_cc[VMIN] = 1;
+	term.c_cc[VTIME] = 0;
+	if (tcsetattr(0, TCSADRAIN, &term) == -1)
+		return (-1);
+	return (0);
+}
 
+int		ft_popopo(int i)
+{
+	write(1, &i, 1);
+	return (0);
+}
