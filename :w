@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 15:02:50 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/22 02:31:53 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/20 20:54:38 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int              main(int ac, char **av)
 		return (-1);
 	if (tcgetattr(0, &term) == -1)
 		return (-1);
-	if (tcgetattr(0, &orig) == -1)
-		return (-1);
 	ft_shell_mod(term);
 	ft_display();
 	ft_shell_init();
@@ -35,11 +33,13 @@ int              main(int ac, char **av)
 
 void	ft_catch_wndw_mod(int signo)
 {
-	t_win	ws;
+	t_win	argp;
 
-	ioctl(1, TIOCSWINSZ, &ws);
 	if (signo == SIGWINCH)
-		ft_printf("col : %u / lig : %u\n", ws.ws_col, ws.ws_row);
+	{
+		ioctl(1, TIOCSWINSZ, argp);
+		ft_printf("col : %i / lig : %i\n", argp.ws_col, argp.ws_row);
+	}
 	// Le code pour afficher en collonne se trouvera ici grace a ioctl.
 }
 
@@ -57,7 +57,7 @@ int		ft_shell_init(void)
 {
 	t_term		term;
 
-	if (tcgetattr(0, &orig) == -1)
+	if (tcgetattr(0, &term) == -1)
 		return (-1);
 	term.c_lflag = (ICANON | ECHO);
 	if (tcsetattr(0, 0, &term) == -1)
