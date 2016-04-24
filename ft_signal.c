@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_signal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/15 15:02:50 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/23 19:06:24 by hponcet          ###   ########.fr       */
+/*   Created: 2016/04/23 19:48:20 by hponcet           #+#    #+#             */
+/*   Updated: 2016/04/23 20:25:45 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_select.h"
 
-int              main(int ac, char **av)
+void	ft_catch_signal(int signo)
 {
-	ac = 0;
-	ft_term_init();
-	ft_link(av);
-	ft_display();
-	ft_term_reset();
-	return (0);
+	if (signo == SIGWINCH)
+		;
+	if (signo == SIGTSTP)
+	{
+		ft_term_reset();
+		ft_printf("SIGTSTP");
+		exit(0);
+	}
+	if (signo == SIGCONT)
+	{
+		ft_printf("SIGCONT");
+		ft_term_init();
+	}
+	if (signo == SIGQUIT)
+	{
+		ft_term_reset();
+		exit(0);
+	}
+}
+
+void	ft_signal(void)
+{
+	signal(SIGWINCH, ft_catch_signal);
+	signal(SIGTSTP, ft_catch_signal);
+	signal(SIGCONT, ft_catch_signal);
+	signal(SIGQUIT, ft_catch_signal);
 }

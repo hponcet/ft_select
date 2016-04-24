@@ -6,28 +6,52 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/22 02:31:56 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/23 21:11:20 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_select.h"
+#include "includes/ft_select.h"
 
 void	ft_display(void)
 {
 	char	buffer[5];
 
+	ft_clear_screen();
 	while (42)
 	{
-		read(0, buffer, 5);
+		ft_display_link();
+		ft_bzero(buffer, 5);
+		read(0, buffer, 4);
+		if (ft_check_key(buffer) == 0)
+			break;
+		ft_bzero(buffer, 5);
 		ft_clear_screen();
-		if (signal(SIGWINCH, ft_catch_wndw_mod) == SIG_ERR)
-			return ;
-		if (buffer[0] == 4)
-			return ;
+		ft_signal();
+	}
+}
+
+void	ft_display_link(void)
+{
+	int		i;
+	t_link	*tmp;
+
+	i = 0;
+	tmp = g_config.link;
+	ft_printf("%20s\n\n", "ft_select");
+	while (i < g_config.nb_link)
+	{
+		if (tmp->ison == 1)
+			ft_putstr("\e[4m");
+		if (tmp->select == 1)
+			ft_putstr("\e[7m");
+		ft_putstr(tmp->value);
+		ft_putendl("\e[0m");
+		tmp = tmp->next;
+		i++;
 	}
 }
 
 void	ft_clear_screen(void)
 {
-	tputs(tgetstr("cl", NULL), 1, ft_popopo);
+	tputs(tgetstr("cl", NULL), 1, ft_char);
 }
