@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/23 21:11:20 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/24 19:10:57 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void	ft_display(void)
 	ft_clear_screen();
 	while (42)
 	{
+		ft_signal();
 		ft_display_link();
-		ft_bzero(buffer, 5);
 		read(0, buffer, 4);
 		if (ft_check_key(buffer) == 0)
 			break;
 		ft_bzero(buffer, 5);
 		ft_clear_screen();
-		ft_signal();
 	}
 }
 
