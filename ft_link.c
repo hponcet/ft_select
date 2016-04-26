@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:01:54 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/23 20:28:35 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/25 20:27:00 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,22 @@ void	ft_link(char **av)
 	g_config.link->ison = 1;
 	g_config.nb_link = i - 1;
 	g_selected = g_config.link;
+	ft_check_max_link_len();
+}
+
+void	ft_check_max_link_len(void)
+{
+	t_link	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = g_config.link;
+	g_config.len_link_max = 0;
+	while (i < g_config.nb_link)
+	{
+		if (g_config.len_link_max < (int)ft_strlen(tmp->value))
+			g_config.len_link_max = ft_strlen(tmp->value);
+		i++;
+		tmp = tmp->next;
+	}
 }

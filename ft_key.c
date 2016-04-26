@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:48:20 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/25 04:01:38 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/25 20:21:40 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int ft_check_key(char *buffer)
 		g_config.nb_link -= 1;
 		free(tmp);
 		g_selected->ison = 1;
+		ft_check_max_link_len();
 	}
 	else if (buffer[0] == 27)
 		return (0);

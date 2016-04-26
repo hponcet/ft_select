@@ -6,7 +6,7 @@
 #    By: hponcet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/17 19:57:28 by hponcet           #+#    #+#              #
-#*   Updated: 2016/04/18 19:42:55 by hponcet          ###   ########.fr       *#
+#*   Updated: 2016/04/25 23:32:08 by hponcet          ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ srcs/ft_memmove.c \
 srcs/ft_memset.c \
 srcs/ft_putchar.c \
 srcs/ft_putchar_fd.c \
+srcs/ft_joinf.c \
 srcs/ft_putendl.c \
 srcs/ft_putendl_fd.c \
 srcs/ft_rootsquare.c \

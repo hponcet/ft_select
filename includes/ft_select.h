@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:05:35 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/23 20:24:19 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/26 00:27:11 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_config
 	int				nb_col;
 	int				nb_row;
 	int				nb_link;
+	int				len_link_max;
 	t_link			*link;
 }					t_config;
 
@@ -74,6 +75,13 @@ int ft_check_key(char *buffer);
 ** ft_link.c
 */
 void	ft_link(char **av);
+void	ft_check_max_link_len(void);
+
+/*
+** ft_display_mult_row.c
+*/
+void		ft_display_mult_row(void);
+
 #endif
 
 /*
