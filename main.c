@@ -5,21 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/15 15:02:50 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/25 20:25:05 by hponcet          ###   ########.fr       */
+/*   Created: 2016/04/26 15:55:26 by hponcet           #+#    #+#             */
+/*   Updated: 2016/04/26 17:33:54 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_select.h"
+#include "include/ft_select.h"
 
-int              main(int ac, char **av)
+int		main(int ac, char **av)
 {
-	if (ac <= 1)
-		exit(0);
-	ft_putstr("\033[?1049h\033[H");
-	ft_term_init();
-	ft_link(av);
-	ft_display();
-	ft_term_reset();
-	return (0);
+	t_conf	*conf;
+
+	if (ac < 2)
+		return (0);
+	conf = ft_term_init(av);
+
+	return (1);
 }

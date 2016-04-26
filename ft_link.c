@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:01:54 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/25 20:27:00 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/26 18:08:56 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_link	*ft_new_link(void)
 	return (link);
 }
 
-void	ft_link(char **av)
+t_conf			*ft_link(t_conf *conf, char **av)
 {
 	int		i;
 	t_link	*prev;
@@ -37,37 +37,37 @@ void	ft_link(char **av)
 	{
 		tmp = ft_new_link();
 		tmp->value = ft_strdup(av[i]);
-		if (g_config.link == NULL)
+		if (conf->link == NULL)
 		{
-			g_config.link = tmp;
+			conf->link = tmp;
 			prev = tmp;
 			continue ;
 		}
 		tmp->prev = prev;
 		prev->next = tmp;
-		tmp->next = g_config.link;
+		tmp->next = conf->link;
 		prev = tmp;
 	}
-	g_config.link->prev = tmp;
-	g_config.link->ison = 1;
-	g_config.nb_link = i - 1;
-	g_selected = g_config.link;
-	ft_check_max_link_len();
+	conf->link->prev = tmp;
+	conf->link->ison = 1;
+	conf->nb_link = i - 1;
+	return (conf);
 }
 
-void	ft_check_max_link_len(void)
+t_conf			*ft_check_max_link_len(t_conf *conf)
 {
 	t_link	*tmp;
 	int		i;
 
 	i = 0;
-	tmp = g_config.link;
-	g_config.len_link_max = 0;
-	while (i < g_config.nb_link)
+	tmp = conf->link;
+	conf->len_link_max = 0;
+	while (i < conf->nb_link)
 	{
-		if (g_config.len_link_max < (int)ft_strlen(tmp->value))
-			g_config.len_link_max = ft_strlen(tmp->value);
+		if (conf->len_link_max < (int)ft_strlen(tmp->value))
+			conf->len_link_max = ft_strlen(tmp->value);
 		i++;
 		tmp = tmp->next;
 	}
+	return (conf);
 }
