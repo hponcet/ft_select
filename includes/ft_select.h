@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:05:35 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/26 17:37:21 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/27 16:32:47 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_SELECT_H
 # include <termios.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <term.h>
 # include <stdlib.h>
 # include <curses.h>
@@ -44,12 +45,22 @@ typedef struct		s_conf
 	t_link			*link;
 }					t_conf;
 
+t_conf				*g_signal;
+
 t_conf				*ft_link(t_conf *conf, char **av);
 t_conf				*ft_check_max_link_len(t_conf *conf);
 
 
-t_conf				*ft_term_reset(t_conf *conf);
-void				*ft_term_winsize(t_conf *conf);
+void				ft_term_reset(t_conf *conf);
+void				ft_term_winsize(t_conf *conf);
 t_conf				*ft_term_init(char **av);
+void				ft_term_fd(t_conf *conf);
+
+void				ft_signal(void);
+
+void				ft_display(t_conf *conf);
+void				ft_display_list(t_conf *conf);
+
+int					ft_char(int i);
 
 #endif

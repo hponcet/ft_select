@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:01:54 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/26 18:08:56 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/27 22:32:46 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_conf			*ft_link(t_conf *conf, char **av)
 		prev = tmp;
 	}
 	conf->link->prev = tmp;
-	conf->link->ison = 1;
 	conf->nb_link = i - 1;
 	return (conf);
 }
