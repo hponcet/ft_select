@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/28 16:14:56 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/28 19:28:49 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ void	ft_display_list(t_conf *conf)
 			tputs(tgetstr("us", NULL), 0, ft_char);
 		if (tmp->select == 1)
 			tputs(tgetstr("mr", NULL), 0, ft_char);
+		tputs(tgoto(tgetstr("cm", NULL), 0, i), 0, ft_char);
 		ft_putendl_fd(tmp->value, 3);
 		tputs(tgetstr("me", NULL), 0, ft_char);
 		tmp = tmp->next;
 		i++;
 	}
+	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 0, ft_char);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 15:28:47 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/28 04:20:47 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/28 19:49:50 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_term_reset(t_conf *conf)
 	tputs(tgetstr("te", NULL), 1, ft_char);
 	tputs(tgetstr("ve", NULL), 1, ft_char);
 	close(conf->fd);
-	ft_putstr("\033[?1049l");
+	//ft_putstr("\033[?1049l");
 }
 
 void		ft_term_winsize(t_conf *conf)
@@ -54,7 +54,7 @@ t_conf		*ft_term_init(char **av)
 	ft_term_winsize(conf);
 	ft_term_fd(conf);
 	tputs(tgetstr("ti", NULL), 1, ft_char);
-	tputs(tgetstr("vi", NULL), 1, ft_char);
+	//tputs(tgetstr("vi", NULL), 1, ft_char);
 	g_signal = conf;
 	conf->link->ison = 1;
 	return (conf);
