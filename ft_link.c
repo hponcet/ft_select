@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:01:54 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/27 22:32:46 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/29 18:20:18 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_conf			*ft_link(t_conf *conf, char **av)
 	while (av[++i])
 	{
 		tmp = ft_new_link();
-		tmp->value = ft_strdup(av[i]);
+		tmp->value = ft_strdup_case(av[i], conf->len_link_max + 1);
 		if (conf->link == NULL)
 		{
 			conf->link = tmp;
@@ -53,20 +53,16 @@ t_conf			*ft_link(t_conf *conf, char **av)
 	return (conf);
 }
 
-t_conf			*ft_check_max_link_len(t_conf *conf)
+void			ft_check_max_link_len(char **av, t_conf *conf)
 {
-	t_link	*tmp;
 	int		i;
 
 	i = 0;
-	tmp = conf->link;
 	conf->len_link_max = 0;
-	while (i < conf->nb_link)
+	while (av[i])
 	{
-		if (conf->len_link_max < (int)ft_strlen(tmp->value))
-			conf->len_link_max = ft_strlen(tmp->value);
+		if (conf->len_link_max < (int)ft_strlen(av[i]))
+			conf->len_link_max = ft_strlen(av[i]);
 		i++;
-		tmp = tmp->next;
 	}
-	return (conf);
 }

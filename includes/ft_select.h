@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:05:35 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/27 16:32:47 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/04/29 18:34:52 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_conf
 t_conf				*g_signal;
 
 t_conf				*ft_link(t_conf *conf, char **av);
-t_conf				*ft_check_max_link_len(t_conf *conf);
+void				ft_check_max_link_len(char **av, t_conf *conf);
 
 
 void				ft_term_reset(t_conf *conf);
@@ -60,6 +60,7 @@ void				ft_signal(void);
 
 void				ft_display(t_conf *conf);
 void				ft_display_list(t_conf *conf);
+void				ft_putendl_tc(char *str, int fd, int j);
 
 int					ft_char(int i);
 
