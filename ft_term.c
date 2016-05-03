@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 15:28:47 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/29 19:47:37 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/03 12:03:18 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@ void		ft_term_reset(t_conf *conf)
 void		ft_term_winsize(t_conf *conf)
 {
 	struct winsize	win;
+	int		i;
 
+	i = 1;
 	ioctl(0, TIOCGWINSZ, &win);
 	conf->nb_col = win.ws_col;
 	conf->nb_row = win.ws_row;
-	ft_display_list(conf);
+	if (conf->nb_row < conf->nb_link)
+		i = conf->nb_link / conf->nb_row;
+	ft_display_list(conf, i);
 }
 
 
