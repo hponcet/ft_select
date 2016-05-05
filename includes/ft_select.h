@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:05:35 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/03 12:01:21 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/05 18:46:12 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void				ft_term_fd(t_conf *conf);
 void				ft_signal(void);
 
 void				ft_display(t_conf *conf);
-void				ft_display_list(t_conf *conf, int nb);
-void				ft_putendl_tc(char *str, int fd, int j);
+void				ft_display_list(t_conf *conf);
+void				ft_putendl_tc(char *str, int fd, int sel, int ison);
 
 int					ft_char(int i);
 

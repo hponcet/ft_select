@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/03 15:43:21 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/05 18:57:54 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,61 +15,59 @@
 void	ft_display(t_conf *conf)
 {
 	char	buffer[5];
-	int		i;
 
-	i = 1;
 	tputs(tgetstr("sc", NULL), 0, ft_char);
 	ft_signal();
 	tputs(tgetstr("rc", NULL), 0, ft_char);
-	if (conf->nb_row < conf->nb_link)
-		i = conf->nb_link / conf->nb_row;
-	ft_display_list(conf, i);
+	ft_display_list(conf);
 	while (1)
 	{
 		read(0, buffer, 4);
 		ft_bzero(buffer, 5);
-		ft_key(conf, buffer);
+		//ft_key(conf, buffer);
 	}
 }
 
-void	ft_display_list(t_conf *conf, int nb)
+void	ft_display_list(t_conf *conf)
 {
 	int		i;
-	int		j;
-	int		k;
+	int		vpos;
+	int		hpos;
 	t_link	*tmp;
 
 	i = 0;
-	j = conf->nb_link / nb;
-	k = 0;
-	if (conf->nb_link % nb != 0)
-		j += 1;
+	vpos = 0;
+	hpos = 0;
 	tmp = conf->link;
 	while (i < conf->nb_link)
 	{
-		k = 0;
-		while (k < j)
+		if (vpos == conf->nb_row)
 		{
-			if (tmp->ison == 1)
-				tputs(tgetstr("us", NULL), 0, ft_char);
-			if (tmp->select == 1)
-				tputs(tgetstr("mr", NULL), 0, ft_char);
-			ft_putendl_tc(tmp->value, 3, 1);
-			tputs(tgetstr("me", NULL), 0, ft_char);
-			tmp = tmp->next;
-			i++;
-			k++;
+			hpos += conf->len_link_max + 1;
+			vpos = 0;
 		}
+		tputs(tgoto(tgetstr("cm", 0), hpos, vpos), 1, ft_char);
+		tputs(tgetstr("ce", 0), 1, ft_char);
+		ft_putendl_tc(tmp->value, 3, tmp->select, tmp->ison);
+		i++;
+		vpos++;
+		tmp = tmp->next;
 	}
+	tputs(tgetstr("rc", NULL), 0, ft_char);
 }
 
-void	ft_putendl_tc(char *str, int fd, int j)
+void	ft_putendl_tc(char *str, int fd, int sel, int ison)
 {
 	int		i;
-	char	r;
 
-	r = '\n';
 	i = 0;
+	if (sel == 1)
+		tputs(tgetstr("mr", NULL), 0, ft_char);
+	if (ison == 1)
+	{
+		tputs(tgetstr("us", NULL), 0, ft_char);
+		tputs(tgetstr("sc", NULL), 0, ft_char);
+	}
 	while (str[i])
 	{
 		if (str[i] == ' ')
@@ -77,8 +75,6 @@ void	ft_putendl_tc(char *str, int fd, int j)
 		write(fd, &str[i], 1);
 		i++;
 	}
-	if (j > 0)
-		write(fd, &r, 1);
 }
 
 
@@ -95,4 +91,4 @@ void	ft_putendl_tc(char *str, int fd, int j)
    do		v
    nd		>
    le		<
-   */
+*/
