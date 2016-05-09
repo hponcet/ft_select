@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:48:20 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/05 19:21:58 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/08 20:14:41 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	ft_signal_cont(void)
 {
 	char			*terminfo;
 
-	ft_putendl("CONT");
 	terminfo = getenv("TERM");
 	tgetent(NULL, terminfo);
 	tcgetattr(0, &(g_signal->term));
@@ -27,7 +26,8 @@ static void	ft_signal_cont(void)
 	tcsetattr(0, 0, &(g_signal->term));
 	tputs(tgetstr("ti", NULL), 1, ft_char);
 	//tputs(tgetstr("vi", NULL), 1, ft_char);
-	ft_display(g_signal);
+	signal(SIGCONT, SIG_DFL);
+	ft_display_list(g_signal);
 	ft_signal();
 }
 static void	ft_signal_susp(void)
@@ -44,7 +44,6 @@ static void	ft_signal_susp(void)
 	//tputs(tgetstr("ve", NULL), 1, ft_char);
 	ft_signal();
 	signal(SIGTSTP, SIG_DFL);
-	ft_putendl("STOP");
 }
 static void	ft_signal_int(void)
 {

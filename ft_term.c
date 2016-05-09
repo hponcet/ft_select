@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 15:28:47 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/05 18:52:39 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/08 20:15:03 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		ft_term_reset(t_conf *conf)
 	tputs(tgetstr("te", NULL), 1, ft_char);
 	tputs(tgetstr("ve", NULL), 1, ft_char);
 	close(conf->fd);
+	signal(SIGTSTP, SIG_DFL);
 }
 
 void		ft_term_winsize(t_conf *conf)
@@ -29,6 +30,7 @@ void		ft_term_winsize(t_conf *conf)
 	ioctl(0, TIOCGWINSZ, &win);
 	conf->nb_col = win.ws_col;
 	conf->nb_row = win.ws_row;
+	ft_link_id(g_signal);
 	ft_display_list(conf);
 }
 
@@ -50,12 +52,15 @@ t_conf		*ft_term_init(char **av)
 		return (NULL);
 	ft_check_max_link_len(av, conf);
 	conf = ft_link(conf, av);
-	ft_term_winsize(conf);
 	ft_term_fd(conf);
 	tputs(tgetstr("ti", NULL), 1, ft_char);
-	//tputs(tgetstr("vi", NULL), 1, ft_char);
+	tputs(tgetstr("vi", NULL), 1, ft_char);
 	g_signal = conf;
+	conf->vpos = 0;
+	conf->hpos = 0;
 	conf->link->ison = 1;
+	ft_link_id(conf);
+	ft_term_winsize(conf);
 	return (conf);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:05:35 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/05 18:46:12 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/08 18:30:58 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_link
 	char			*value;
 	int				select;
 	int				ison;
+	int				*id;
 	struct s_link	*prev;
 	struct s_link	*next;
 }					t_link;
@@ -40,6 +41,8 @@ typedef struct		s_conf
 	int				nb_col;
 	int				nb_row;
 	int				nb_link;
+	int				hpos;
+	int				vpos;
 	int				len_link_max;
 	int				fd;
 	t_link			*link;
@@ -49,7 +52,7 @@ t_conf				*g_signal;
 
 t_conf				*ft_link(t_conf *conf, char **av);
 void				ft_check_max_link_len(char **av, t_conf *conf);
-
+void				ft_link_id(t_conf *conf);
 
 void				ft_term_reset(t_conf *conf);
 void				ft_term_winsize(t_conf *conf);
@@ -58,7 +61,9 @@ void				ft_term_fd(t_conf *conf);
 
 void				ft_signal(void);
 
-void				ft_display(t_conf *conf);
+void				ft_key(char **av, t_conf *conf, char *buf);
+
+void				ft_display(char **av, t_conf *conf);
 void				ft_display_list(t_conf *conf);
 void				ft_putendl_tc(char *str, int fd, int sel, int ison);
 
