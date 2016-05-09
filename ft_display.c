@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/09 02:21:15 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/09 22:13:01 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,23 @@ void	ft_display_list(t_conf *conf)
 	int		i;
 	t_link	*tmp;
 
-	i = 0;
+	i = -1;
 	tmp = conf->link;
-	conf->hpos = 0;
-	conf->vpos = 0;
 	tputs(tgetstr("cl", 0), 1, ft_char);
-	while (i < conf->nb_link)
+	conf->hpos = 0;
+	conf->vpos = ft_display_bar(conf);
+	while (++i < conf->nb_link)
 	{
 		if (tmp->ison == 1)
 			tputs(tgetstr("sc", NULL), 0, ft_char);
-		if (conf->vpos == conf->nb_row)
+		if (conf->vpos == conf->nb_row - 1)
 		{
 			conf->hpos += conf->len_link_max + 1;
-			conf->vpos = 0;
+			conf->vpos = 1;
 		}
 		tputs(tgoto(tgetstr("cm", 0), conf->hpos, conf->vpos), 1, ft_char);
 		tputs(tgetstr("ce", 0), 1, ft_char);
 		ft_putendl_tc(tmp->value, 3, tmp->select, tmp->ison);
-		i++;
 		conf->vpos++;
 		tmp = tmp->next;
 	}
@@ -61,10 +60,17 @@ void	ft_putendl_tc(char *str, int fd, int sel, int ison)
 	int		i;
 
 	i = 0;
+	ft_putstr_fd(__COLOR__, 3);
 	if (sel == 1)
+	{
 		tputs(tgetstr("mr", NULL), 0, ft_char);
+		ft_putstr_fd(__SELECTED__, 3);
+	}
 	if (ison == 1)
+	{
+		ft_putstr_fd(__ISON__, 3);
 		tputs(tgetstr("us", NULL), 0, ft_char);
+	}
 	while (str[i])
 	{
 		if (str[i] == ' ')
@@ -73,7 +79,9 @@ void	ft_putendl_tc(char *str, int fd, int sel, int ison)
 		i++;
 	}
 	tputs(tgetstr("me", NULL), 0, ft_char);
+	ft_putstr_fd("\x1B[0m", 3);
 }
+
 
 
 /*
@@ -91,6 +99,6 @@ void	ft_putendl_tc(char *str, int fd, int sel, int ison)
    le		<
    cb      Effacer depuis le début de la ligne jusqu'au curseur
    DC      Effacer %1 caractères
-   hd      Déplacer le curseur d'une ligne vers le bas
    do      Descendre le curseur d'une ligne
+   ll	   Déplacer le curseur au coin inférieur gauche
 */

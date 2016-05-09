@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:05:35 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/08 18:30:58 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/09 22:26:23 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 # include <termios.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 # include <term.h>
 # include <stdlib.h>
 # include <curses.h>
+# include <time.h>
 # include <sys/ioctl.h>
 # include <signal.h>
 # include "../libft/includes/libft.h"
 # define t_term struct termios
 # define t_win struct winsize
-
+# define __COLOR__ "\x1B[1m"
+# define __SELECTED__ "\x1B[44m"
+# define __ISON__ "\x1B[34m"
 typedef struct		s_link
 {
 	char			*value;
@@ -66,6 +71,12 @@ void				ft_key(char **av, t_conf *conf, char *buf);
 void				ft_display(char **av, t_conf *conf);
 void				ft_display_list(t_conf *conf);
 void				ft_putendl_tc(char *str, int fd, int sel, int ison);
+
+int					ft_display_bar(t_conf *conf);
+void				ft_make_info_bar(char *path, t_conf *conf);
+void				ft_type(mode_t st_mode);
+void				ft_time(time_t tim);
+void				ft_time_parse(char *buf, char *ret);
 
 int					ft_char(int i);
 
