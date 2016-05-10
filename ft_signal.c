@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:48:20 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/08 20:14:41 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/10 15:56:52 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_signal_cont(void)
 	tputs(tgetstr("ti", NULL), 1, ft_char);
 	//tputs(tgetstr("vi", NULL), 1, ft_char);
 	signal(SIGCONT, SIG_DFL);
-	ft_display_list(g_signal);
+	ft_display_init(g_signal);
 	ft_signal();
 }
 static void	ft_signal_susp(void)

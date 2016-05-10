@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:05:35 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/09 22:26:23 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/10 15:56:06 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void				ft_key(char **av, t_conf *conf, char *buf);
 void				ft_display(char **av, t_conf *conf);
 void				ft_display_list(t_conf *conf);
 void				ft_putendl_tc(char *str, int fd, int sel, int ison);
+void				ft_display_init(t_conf *conf);
 
 int					ft_display_bar(t_conf *conf);
 void				ft_make_info_bar(char *path, t_conf *conf);

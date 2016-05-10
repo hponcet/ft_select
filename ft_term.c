@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 15:28:47 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/08 20:15:03 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/10 15:57:11 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_term_winsize(t_conf *conf)
 	conf->nb_col = win.ws_col;
 	conf->nb_row = win.ws_row;
 	ft_link_id(g_signal);
-	ft_display_list(conf);
+	ft_display_init(conf);
 }
 
 

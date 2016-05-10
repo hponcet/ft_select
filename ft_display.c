@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/09 22:13:01 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/10 15:59:56 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,25 @@ void	ft_display(char **av, t_conf *conf)
 	char	buffer[5];
 
 	ft_signal();
-	ft_display_list(conf);
+	ft_display_init(conf);
 	while (1)
 	{
 		read(0, buffer, 4);
 		ft_key(av, conf, buffer);
 		ft_bzero(buffer, 5);
-		ft_display_list(conf);
+		ft_display_init(conf);
 	}
+}
+
+void	ft_display_init(t_conf *conf)
+{
+	if (conf->nb_row * (conf->nb_col / conf->len_link_max) < conf->nb_link)
+	{
+		tputs(tgetstr("cl", 0), 1, ft_char);
+		ft_putstr_fd("\x1B[41m\x1B[1m Window too small \x1B[0m", 3);
+		return ;
+	}
+	ft_display_list(conf);
 }
 
 void	ft_display_list(t_conf *conf)
@@ -39,8 +50,6 @@ void	ft_display_list(t_conf *conf)
 	conf->vpos = ft_display_bar(conf);
 	while (++i < conf->nb_link)
 	{
-		if (tmp->ison == 1)
-			tputs(tgetstr("sc", NULL), 0, ft_char);
 		if (conf->vpos == conf->nb_row - 1)
 		{
 			conf->hpos += conf->len_link_max + 1;
@@ -52,7 +61,6 @@ void	ft_display_list(t_conf *conf)
 		conf->vpos++;
 		tmp = tmp->next;
 	}
-	tputs(tgetstr("rc", NULL), 0, ft_char);
 }
 
 void	ft_putendl_tc(char *str, int fd, int sel, int ison)

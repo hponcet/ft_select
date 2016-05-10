@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 20:20:48 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/09 22:45:09 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/10 14:25:55 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int		ft_display_bar(t_conf *conf)
 	tmp = conf->link;
 	while (tmp->ison == 0)
 		tmp = tmp->next;
-	if (conf->nb_link / ((conf->nb_col / conf->len_link_max) * conf->nb_row) < 0)
-		return (0);
 	tputs(tgoto(tgetstr("cm", 0), 0, 0), 0, ft_char);
 	path = ft_joinf("%s/%s", getenv("PWD"), tmp->value);
 	if ((int)ft_strlen(path) + 12 > conf->nb_col)
