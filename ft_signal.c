@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:48:20 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/10 15:56:52 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/10 18:43:48 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_signal_cont(void)
 	g_signal->term.c_cc[VTIME] = 0;
 	tcsetattr(0, 0, &(g_signal->term));
 	tputs(tgetstr("ti", NULL), 1, ft_char);
-	//tputs(tgetstr("vi", NULL), 1, ft_char);
+	tputs(tgetstr("vi", NULL), 1, ft_char);
 	signal(SIGCONT, SIG_DFL);
 	ft_display_init(g_signal);
 	ft_signal();
@@ -34,15 +34,14 @@ static void	ft_signal_susp(void)
 {
 	char	susp[2];
 
-	ft_putstr(tgetstr("me", NULL));
+	tputs(tgetstr("me", NULL), 1, ft_char);
 	susp[0] = g_signal->term.c_cc[VSUSP];
 	susp[1] = 0;
 	ioctl(0, TIOCSTI, susp);
 	g_signal->term.c_lflag |= (ICANON | ECHO);
 	tcsetattr(0, 0, &(g_signal->term));
 	tputs(tgetstr("te", NULL), 1, ft_char);
-	//tputs(tgetstr("ve", NULL), 1, ft_char);
-	ft_signal();
+	tputs(tgetstr("ve", NULL), 1, ft_char);
 	signal(SIGTSTP, SIG_DFL);
 }
 static void	ft_signal_int(void)
