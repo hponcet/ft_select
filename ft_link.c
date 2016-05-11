@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:01:54 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/08 20:14:49 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 09:45:10 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			ft_link_id(t_conf *conf)
 	tmp = conf->link;
 	while (i < conf->nb_link)
 	{
-		if (row == conf->nb_row)
+		if (row == conf->nb_row - 1)
 		{
 			row = 0;
 			col++;

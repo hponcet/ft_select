@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 15:28:47 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/10 15:57:11 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 12:56:59 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ t_conf		*ft_term_init(char **av)
 	conf = (t_conf*)malloc(sizeof(t_conf));
 	conf->terminfo = getenv("TERM");
 	if (tgetent(NULL, conf->terminfo) < 1)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	if (tcgetattr(0, &(conf->term)) == -1)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	conf->term.c_lflag &= ~(ICANON | ECHO);
 	conf->term.c_cc[VMIN] = 1;
 	conf->term.c_cc[VTIME] = 0;

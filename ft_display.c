@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/10 15:59:56 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 11:10:36 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ void	ft_display(char **av, t_conf *conf)
 
 void	ft_display_init(t_conf *conf)
 {
-	if (conf->nb_row * (conf->nb_col / conf->len_link_max) < conf->nb_link)
+	int		nbcol;
+
+	nbcol = (conf->nb_link / (conf->nb_row - 1));
+	if (conf->nb_link % (conf->nb_row - 1) != 0)
+		nbcol += 1;
+	if (conf->nb_row * (conf->nb_col / conf->len_link_max) < conf->nb_link ||
+			nbcol * (conf->len_link_max + 1) > conf->nb_col)
 	{
 		tputs(tgetstr("cl", 0), 1, ft_char);
 		ft_putstr_fd("\x1B[41m\x1B[1m Window too small \x1B[0m", 3);
@@ -50,7 +56,7 @@ void	ft_display_list(t_conf *conf)
 	conf->vpos = ft_display_bar(conf);
 	while (++i < conf->nb_link)
 	{
-		if (conf->vpos == conf->nb_row - 1)
+		if (conf->vpos == conf->nb_row)
 		{
 			conf->hpos += conf->len_link_max + 1;
 			conf->vpos = 1;

@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:48:20 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/10 18:43:48 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 13:25:24 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ static void	ft_signal_susp(void)
 	char	susp[2];
 
 	tputs(tgetstr("me", NULL), 1, ft_char);
-	susp[0] = g_signal->term.c_cc[VSUSP];
+	susp[0] = 26;
 	susp[1] = 0;
 	ioctl(0, TIOCSTI, susp);
-	g_signal->term.c_lflag |= (ICANON | ECHO);
-	tcsetattr(0, 0, &(g_signal->term));
+	g_signal->term.c_lflag |= (ICANON);
+	g_signal->term.c_lflag |= (ECHO);
+	tcsetattr(0, TCSANOW, &(g_signal->term));
 	tputs(tgetstr("te", NULL), 1, ft_char);
 	tputs(tgetstr("ve", NULL), 1, ft_char);
 	signal(SIGTSTP, SIG_DFL);

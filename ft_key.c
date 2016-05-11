@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 21:07:29 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/10 17:00:25 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 13:09:21 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@ void	ft_key(char **av, t_conf *conf, char *buffer)
 	{
 		int		i;
 		int		col;
-		int		nbcol;
-		int		lastcol;
+		int		l;
+		int		c;
 
 		i = -1;
-		nbcol = conf->nb_link / conf->nb_row;
-		if (conf->nb_link % conf->nb_row != 0)
-			nbcol += 1;
-		lastcol = -(nbcol * conf->nb_row - conf->nb_link - conf->nb_row);
-		col = conf->nb_row;
-		if (tmp->id[1] == nbcol - 1)
-			col = lastcol;
-		if (tmp->id[1] == nbcol - 2 && tmp->id[0] > lastcol - 1)
-			col = conf->nb_row - tmp->id[0] + lastcol - 1;
+		l = (conf->nb_link / (conf->nb_row - 1));
+		if (conf->nb_link % (conf->nb_row - 1) != 0)
+			l += 1;
+		c = -(l * conf->nb_row - conf->nb_link - conf->nb_row -((l - 1) * 1));
+		col = conf->nb_row - 1;
+		if (tmp->id[1] == l - 1)
+			col = c;
+		if (tmp->id[1] == l - 2 && tmp->id[0] > c - 1)
+			col = conf->nb_row - tmp->id[0] + c - 2;
 		tmp->ison = 0;
 		while (++i < col)
 			tmp = tmp->next;
@@ -58,19 +58,19 @@ void	ft_key(char **av, t_conf *conf, char *buffer)
 	{
 		int		i;
 		int		col;
-		int		nbcol;
-		int		lastcol;
+		int		l;
+		int		c;
 
 		i = 0;
-		nbcol = conf->nb_link / conf->nb_row;
+		l = conf->nb_link / conf->nb_row;
 		if (conf->nb_link % conf->nb_row != 0)
-			nbcol += 1;
-		lastcol = -(nbcol * conf->nb_row - conf->nb_link - conf->nb_row);
-		col = conf->nb_row;
+			l += 1;
+		c = -(l * conf->nb_row - conf->nb_link - conf->nb_row -(l - 1));
+		col = conf->nb_row - 1;
 		if (tmp->id[1] == 0)
-			col = lastcol;
-		if (tmp->id[1] == 0 && tmp->id[0] > lastcol - 1)
-			col = tmp->id[0] + 1;
+			col = c;
+		if (tmp->id[1] == 0 && tmp->id[0] > c - 1)
+			col = tmp->id[0] + c + conf->nb_row - tmp->id[0] - 1;
 		tmp->ison = 0;
 		while (i < col)
 		{
@@ -97,7 +97,7 @@ void	ft_key(char **av, t_conf *conf, char *buffer)
 		ft_check_max_link_len(av, conf);
 		ft_link_id(conf);
 	}
-	else if (buffer[0] == 27)						/// ESC
+	else if (buffer[0] == 27 && buffer[1] == 0)						/// ESC
 	{
 		ft_term_reset(conf);
 		exit(0);
