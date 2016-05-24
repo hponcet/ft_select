@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/11 14:14:30 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/24 21:45:51 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,24 +95,3 @@ void	ft_putendl_tc(char *str, int fd, int sel, int ison)
 	tputs(tgetstr("me", NULL), 0, ft_char);
 	ft_putstr_fd("\x1B[0m", 3);
 }
-
-
-
-/*
-   me      Fin de tous les modes tels que so, us, mb, md et mr
-   us      Début de soulignement
-   p
-   md      Début de mode gras
-   mr      Début de mode inverse
-   sc		save pos curs
-   rc		restor pos curs
-   cm		cursor move
-   up		^
-   do		v
-   nd		>
-   le		<
-   cb      Effacer depuis le début de la ligne jusqu'au curseur
-   DC      Effacer %1 caractères
-   do      Descendre le curseur d'une ligne
-   ll	   Déplacer le curseur au coin inférieur gauche
-*/

@@ -6,12 +6,11 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:48:20 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/24 20:13:09 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/24 21:45:15 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
 
 static void	ft_signal_cont(void)
 {
@@ -30,6 +29,7 @@ static void	ft_signal_cont(void)
 	ft_display_init(g_signal);
 	ft_signal();
 }
+
 static void	ft_signal_susp(void)
 {
 	char	susp[2];
@@ -45,6 +45,7 @@ static void	ft_signal_susp(void)
 	tputs(tgetstr("ve", NULL), 1, ft_char);
 	ioctl(0, TIOCSTI, susp);
 }
+
 static void	ft_signal_int(void)
 {
 	g_signal->term.c_lflag |= (ICANON | ECHO);

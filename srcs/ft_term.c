@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 15:28:47 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/11 14:15:22 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/24 21:46:40 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void		ft_term_winsize(t_conf *conf)
 	ft_link_id(g_signal);
 	ft_display_init(conf);
 }
-
 
 t_conf		*ft_term_init(char **av)
 {

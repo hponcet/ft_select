@@ -6,7 +6,7 @@
 #*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/04/15 00:42:52 by hponcet           #+#    #+#             *#
-#*   Updated: 2016/05/11 14:23:13 by hponcet          ###   ########.fr       *#
+#*   Updated: 2016/05/24 22:27:32 by hponcet          ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -22,6 +22,9 @@ SRC =	ft_bar.c \
 		ft_key.c \
 		ft_link.c \
 		ft_signal.c \
+		ft_key_dir.c \
+		ft_key_map.c \
+		ft_extension.c \
 		ft_term.c \
 		main.c
 
