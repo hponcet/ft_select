@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 21:07:29 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/24 22:30:20 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/24 22:45:47 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_key(char **av, t_conf *conf, char *buffer)
 		ft_key_left(conf, tmp);
 	else if ((buffer[0] == 27 && buffer[2] == 51) || buffer[0] == 127)
 		ft_key_del(conf, tmp, av);
-	else if ((buffer[0] == 27 && buffer[1] == 0) || conf->nb_link == 0)
+	else if (buffer[0] == 27 && buffer[1] == 0)
 		ft_key_esc(conf);
 	else if (buffer[0] == 1)
 		ft_key_ctrla(conf, tmp);
@@ -37,4 +37,6 @@ void	ft_key(char **av, t_conf *conf, char *buffer)
 		ft_key_space(tmp);
 	else if (buffer[0] == 10)
 		ft_key_enter(conf);
+	if (conf->nb_link == 0)
+		ft_key_esc(conf);
 }

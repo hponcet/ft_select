@@ -6,7 +6,7 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 17:43:19 by hponcet           #+#    #+#             */
-/*   Updated: 2016/04/29 18:01:56 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/24 22:51:04 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char	*ft_strdup_case(char *str, int i)
 	int		j;
 
 	j = -1;
-	if (i <  1)
+	if (i < 1)
 		i = ft_strlen(str);
-	if(!(ret = (char*)malloc(sizeof(char) * i + 1)))
+	if (!(ret = (char*)malloc(sizeof(char) * i + 1)))
 		return (NULL);
 	ret[i] = '\0';
 	while (++j < i)
