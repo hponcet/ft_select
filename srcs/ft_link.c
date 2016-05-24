@@ -6,11 +6,11 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 19:01:54 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/11 09:45:10 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 14:14:58 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_select.h"
+#include "ft_select.h"
 
 static t_link	*ft_new_link(void)
 {

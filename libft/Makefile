@@ -6,7 +6,7 @@
 #    By: hponcet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/17 19:57:28 by hponcet           #+#    #+#              #
-#*   Updated: 2016/04/29 17:53:45 by hponcet          ###   ########.fr       *#
+#*   Updated: 2016/05/11 14:18:52 by hponcet          ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,17 +121,17 @@ OBJECTS = $(EXEC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar rc $(NAME) *.o
-	ranlib $(NAME)
+	-@ ar rc $(NAME) *.o
+	-@ ranlib $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I ./includes -c $<
+	-@ $(CC) $(CFLAGS) -I ./includes -c $<
 
 clean :
-	rm -rf *.o
+	-@ rm -rf *.o
 
 fclean: clean
-	rm -rf $(NAME)
+	-@ rm -rf $(NAME)
 
 re: fclean all
 

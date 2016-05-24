@@ -6,11 +6,11 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 21:07:29 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/11 13:09:21 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 14:14:44 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_select.h"
+#include "ft_select.h"
 
 
 void	ft_key(char **av, t_conf *conf, char *buffer)

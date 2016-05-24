@@ -6,11 +6,11 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 20:11:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/11 11:10:36 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 14:14:30 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_select.h"
+#include "ft_select.h"
 
 void	ft_display(char **av, t_conf *conf)
 {

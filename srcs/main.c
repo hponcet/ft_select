@@ -6,11 +6,11 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 15:55:26 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/05 21:31:15 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 14:15:30 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_select.h"
+#include "ft_select.h"
 
 int		main(int ac, char **av)
 {

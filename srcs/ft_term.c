@@ -6,11 +6,11 @@
 /*   By: hponcet <hponcet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 15:28:47 by hponcet           #+#    #+#             */
-/*   Updated: 2016/05/11 12:56:59 by hponcet          ###   ########.fr       */
+/*   Updated: 2016/05/11 14:15:22 by hponcet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_select.h"
+#include "ft_select.h"
 
 void		ft_term_reset(t_conf *conf)
 {
